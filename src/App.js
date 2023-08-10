@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { Homepage, First, Second, Third, Fourth } from './pages/Homepage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+ <Router>
+      <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/pg1" element={<First />} />
+      <Route path="/pg2" element={<Second />} />
+      <Route path="/pg3" element={<Third />} />
+      <Route path="/pg4" element={<Fourth />} />
+      </Routes>
+      </Router>
   );
 }
 
