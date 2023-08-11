@@ -1,14 +1,25 @@
-import React from "react";
-import semlogo from "../img/semlogo.png"
+import React, {useEffect} from "react";
+import semlogo from "../img/semlogo.png";
+import axios from "axios";
 
 
 const NavBar = () => {
- 
-
-  const handleLogin = () => {
   
+  useEffect(()=>{
+    const fecthcUser = async ()=> {
+      const response = await axios.get("http://localhost:8080/account/", {withCredentials: true});
+      console.log("response:\n", response)
+    }
+    fecthcUser()
+  },[])
+  const handleLogin = async () => {
+    try {
+      window.open("http://localhost:8080/auth/github", "_self")
+    } catch (error) {
+      console.error("Error during GitHub login:", error);
+    }
   };
- 
+  
 
   return (
     <nav className="bg-gray-900 fixed flex top-0 left-0 w-full p-4">
