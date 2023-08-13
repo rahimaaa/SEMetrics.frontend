@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import semlogo from "../img/semlogo.png"
 
-function SideNarBar(){
+function SideNavBar(){
 
 
     return(
@@ -22,4 +22,4 @@ function SideNarBar(){
     </div>
     );
 }
-export default SideNarBar;
+export default SideNavBar;

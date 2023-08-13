@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SideNarBar from "../components/SideNavBar";
+import SideNavBar from "../components/SideNavBar";
 
 
 function First(){
@@ -8,7 +8,7 @@ function First(){
     return(
         <div>
             <h1>THIS IS PAGE 1</h1>
-            <SideNarBar/>
+            <SideNavBar/>
         </div>
     );
 }
