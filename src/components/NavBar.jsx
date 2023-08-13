@@ -1,13 +1,17 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import semlogo from "../img/semlogo.png";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   useEffect(()=>{
     const fecthcUser = async ()=> {
       const response = await axios.get("http://localhost:8080/account/", {withCredentials: true});
+      if(response.status === 200){
+        setUser(response.data);
+      }
       console.log("response:\n", response)
     }
     fecthcUser()
@@ -20,7 +24,17 @@ const NavBar = () => {
     }
   };
   
-
+  const handleLogout = async () => {
+    const response = await axios.get("http://localhost:8080/auth/logout", {
+      withCredentials: true,
+    });
+    if(response.status === 200){
+      setUser(null);
+      navigate("/");
+    }
+    console.log(response);
+    
+  };
   return (
     <nav className="bg-gray-900 fixed flex top-0 left-0 w-full p-4">
       {/* Logo on the left */}
@@ -36,12 +50,19 @@ const NavBar = () => {
       {/* Navigation links and buttons on the right */}
       <div className="flex right-0 ml-auto items-center space-x-4">
       
-        <button
-          onClick={handleLogin}
-          className="bg-gray-200 hover:scale-110 dark:bg-gray-700 rounded-full px-3 py-1 right-0 text-sm font-semibold text-white mr-1"
+        {user?<button
+          onClick={handleLogout}
+          className=" hover:scale-110 bg-red-500 rounded-full px-3 py-1 right-0 text-sm font-semibold text-white mr-1"
         >
-          Login
-        </button>
+          Logout
+        </button>:
+        <button
+        onClick={handleLogin}
+        className="bg-gray-200 hover:scale-110 dark:bg-gray-700 rounded-full px-3 py-1 right-0 text-sm font-semibold text-white mr-1"
+      >
+        Login
+      </button>
+        }
       </div>
     </nav>
   );
