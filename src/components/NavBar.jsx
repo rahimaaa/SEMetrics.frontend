@@ -35,15 +35,19 @@ const NavBar = () => {
     console.log(response);
     
   };
+
+  const handleLogo = () => {
+    navigate('/Home');
+  }
   return (
     <nav className="bg-gray-900 fixed flex top-0 left-0 w-full p-4">
       {/* Logo on the left */}
       <div className="text-xl font-bold">
         <img
-          
+          onClick={handleLogo}
           src={semlogo}
           alt="logo"
-          className="h-15 hover:scale-110 w-20"
+          className="h-15 hover:scale-110 w-20 cursor-pointer"
         />
       </div>
 
