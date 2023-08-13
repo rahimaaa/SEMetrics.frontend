@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Homepage, First } from "./pages";
 import Login from "./components/LogIn";
 import BackendTesting from "./components/BackendTesting";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (

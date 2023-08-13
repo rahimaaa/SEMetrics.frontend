@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const BackendTesting = () => {
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,6 +34,14 @@ const BackendTesting = () => {
     }
   };
 
+  const handleLogout = async () => {
+    const response = await axios.get("http://localhost:8080/auth/logout", {
+      withCredentials: true,
+    });
+    console.log(response);
+
+    navigate("/");
+  };
   return (
     <div>
       <h1>Backend Testing Component</h1>
@@ -49,6 +59,7 @@ const BackendTesting = () => {
             width="64px"
             height="64px"
           />
+          <button onClick={handleLogout}>Logout</button>
           <a
             href={`https://github.com/${user.login}?tab=repositories`}
             target="_blank"
