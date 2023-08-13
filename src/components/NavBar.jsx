@@ -37,7 +37,7 @@ const NavBar = () => {
   };
 
   const handleLogo = () => {
-    navigate('/Home');
+    navigate('/');
   }
   return (
     <nav className="bg-gray-900 fixed flex top-0 left-0 w-full p-4">
