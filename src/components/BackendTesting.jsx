@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const BackendTesting = () => {
@@ -24,7 +24,7 @@ const BackendTesting = () => {
 
   const getRepos = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/account/repos", {
+      const response = await axios.get("http://localhost:8080/account/repos/", {
         withCredentials: true,
       });
       console.log("response\n", response.data);
@@ -73,7 +73,9 @@ const BackendTesting = () => {
             repos.map((repo) => {
               return (
                 <div style={{ border: "1px solid black" }} key={repo.id}>
-                  <h2>{repo.name}</h2>
+                  <h2>
+                    <Link to={`/repos/${repo.name}`}>{repo.name}</Link>
+                  </h2>
                   <p>path: {repo.full_name}</p>
                   <p>visibility: {repo.visibility}</p>
                 </div>
