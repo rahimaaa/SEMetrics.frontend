@@ -1,5 +1,4 @@
 import React from "react";
-import semlogo from "../img/semlogo.png";
 
 function Homepage() {
   return (

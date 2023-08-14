@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Homepage, ColabMetrics, CodingMetrics } from "./pages";
-import Login from "./components/LogIn";
-import { Homepage} from "./pages";
 import NavBar from "./components/NavBar";
 import BackendTesting from "./components/BackendTesting";
 import RepoMetrics from "./pages/RepoMetrics";
@@ -15,10 +13,6 @@ function App() {
       <NavBar/>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route
-          path="/login"
-          element={<Login name="login" displayName="Log In" />}
-        />
         <Route path="/ColabMetrics" element={<ColabMetrics />} />
         <Route path="/CodingMetrics" element={<CodingMetrics />} />
         <Route path="/repos/:repoName" element={<RepoMetrics />} />
