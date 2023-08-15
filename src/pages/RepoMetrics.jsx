@@ -6,6 +6,25 @@ import axios from "axios";
 const RepoMetrics = () => {
   const { repoName } = useParams();
   const [impactData, setImpactData] = useState([]);
+  const [repo, setRepo] = useState({});
+
+  useEffect(() => {
+    const fetchRepo = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Repo:", response.data);
+        setRepo(response.data);
+      } catch (error) {
+        console.log("Error fetching repo: ", error);
+      }
+    };
+    fetchRepo();
+  }, [repoName]);
 
   useEffect(() => {
     const fetchRepoImpact = async () => {
@@ -22,9 +41,65 @@ const RepoMetrics = () => {
         console.log("Error fetching repo impact data:", error);
       }
     };
+    async function fetchRepoCollabs() {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/collabs/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Collaborators Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo Collaborator data:", error);
+      }
+    }
 
+    async function fetchNewWork() {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/new_work/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("New Work Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo impact data:", error);
+      }
+    }
+    const fetchRepoComplexity = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/complexity/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Complexity Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    const fetchRepoLegacyRefactor = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos//legacy-refactor/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Legacy Refactor Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
     fetchRepoImpact();
-  }, [repoName]);
+    fetchRepoCollabs();
+    fetchNewWork();
+    fetchRepoComplexity();
+    fetchRepoLegacyRefactor();
+  }, [repo]);
 
   return (
     <div>
