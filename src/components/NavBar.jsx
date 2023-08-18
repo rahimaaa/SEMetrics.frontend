@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import semlogo from "../img/semlogo.png";
+import semlogo from "../assets/semlogo.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
