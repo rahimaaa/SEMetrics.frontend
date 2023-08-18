@@ -10,11 +10,10 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     <Router>
-      <NavBar/>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/ColabMetrics" element={<ColabMetrics />} />
-        <Route path="/CodingMetrics" element={<CodingMetrics />} />
+        <Route path="/colab-metrics" element={<ColabMetrics />} />
+        <Route path="/coding-metrics" element={<CodingMetrics />} />
         <Route path="/repos/:repoName" element={<RepoMetrics />} />
         <Route path="/backend-testing" element={<BackendTesting />} />
       </Routes>

@@ -1,15 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import SideNarBar from "../components/SideNavBar";
+import SideNavBar from "../components/SideNavBar";
+import Metric from "../components/Metric";
 
-
-function Third(){
-
-    return(
-        <div>
-             <h1>THIS IS PAGE 3</h1>
-            <SideNarBar/>
-        </div>
-    );
+function ColabMetrics() {
+  return (
+    <div className="flex bg-slate-400">
+      <SideNavBar />
+      <div className="ml-2 text-sm text-black-300">
+        <Metric />
+        <h1>THIS IS ColabMetrics</h1>
+      </div>
+    </div>
+  );
 }
-export default Third;
+export default ColabMetrics;
