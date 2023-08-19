@@ -84,7 +84,7 @@ const RepoMetrics = () => {
     const fetchRepoLegacyRefactor = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos//legacy-refactor/${repoName}`,
+          `http://localhost:8080/account/repos/legacy-refactor/${repoName}`,
           {
             withCredentials: true,
           }
@@ -99,7 +99,7 @@ const RepoMetrics = () => {
     fetchNewWork();
     fetchRepoComplexity();
     fetchRepoLegacyRefactor();
-  }, [repo]);
+  }, [repoName]);
 
   return (
     <div>
