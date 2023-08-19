@@ -31,7 +31,7 @@ function SideNavBar() {
     navigate("../profile");
   };
   return (
-    <div className="bg-gray-600">
+    <div className="bg-slate-800">
       <div
         className={` ${
           open ? "w-72" : "w-30 "
@@ -53,7 +53,7 @@ function SideNavBar() {
             }`}
           />
           <h1
-            className={`text-black origin-left font-medium text-xl duration-200 ${
+            className={`text-cyan-100 origin-left font-medium text-xl duration-200 ${
               !open && "scale-0"
             }`}
           >
@@ -62,7 +62,7 @@ function SideNavBar() {
         </div>
         <ul className="pt-6">
           <li
-            className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-2"
+            className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-cyan-100 text-sm items-center gap-x-4 mt-2"
             onClick={handleShowDashBoard}
           >
             <img
@@ -76,7 +76,7 @@ function SideNavBar() {
           </li>
          
           <li
-            className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-2"
+            className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-cyan-100 text-sm items-center gap-x-4 mt-2"
             onClick={handleShowProfile}
           >
             <img
@@ -97,7 +97,7 @@ function SideNavBar() {
               alt="logout"
               className="gap-x-4 top-9 w-10 items-center"
             />
-            <span className={`${!open && "hidden"} origin-left duration-200`}>
+            <span className={`${!open && "hidden"} origin-left text-cyan-100 duration-200`}>
               Logout
             </span>
           </li>

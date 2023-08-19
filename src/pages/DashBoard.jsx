@@ -43,33 +43,33 @@ function Dashboard() {
       <SideNavBar />
       <div className="flex flex-grow flex-col pt-8">
         <div
-          className={`p-8 max-w-full dropdown ${isDropdownOpen ? "open" : ""}`}
+          className={`p-8 max-w-full text-cyan-100 dropdown ${isDropdownOpen ? "open" : ""}`}
         >
           <label
             htmlFor="repos"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-cyan-200 bg-gray-900 "
           >
             Select a Repository
           </label>
         
           <div
             id="repo-wrapper"
-            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-cyan-100 dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           >
           <input
             id="repos"
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder={searchTerm|| "Select a Repository"}
-            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
             onFocus={handleDropdownToggle}
           />
           </div>
           {isDropdownOpen && (
-            <div className="flex flex-col justify-between border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full mt-2 max-h-40 overflow-y-auto">
+            <div className="flex flex-col justify-between border bg-slate-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full mt-2 max-h-40 overflow-y-auto">
               <ul className="dropdown-list divide-y-2 divide-slate-500">
               {filteredRepos.length === 0 ? (
-                <li className="p-2 text-center text-white">repo does not exist</li>
+                <li className="p-2 text-center text-cyan-100">repo does not exist</li>
                 ) : (
                 filteredRepos.map((repo) => (
                   <li
