@@ -39,7 +39,7 @@ const NavBar = () => {
     navigate("/");
   };
   return (
-    <nav className="bg-gray-900 fixed flex top-0 left-0 w-full p-4">
+    <nav className="bg-slate-800 fixed flex top-0 left-0 w-full p-4">
       {/* Logo on the left */}
       <div className="text-xl font-bold">
         <img
@@ -62,7 +62,7 @@ const NavBar = () => {
         ) : (
           <button
             onClick={handleLogin}
-            className="bg-gray-200 hover:scale-110 dark:bg-gray-700 rounded-full px-3 py-1 right-0 text-sm font-semibold text-white mr-1"
+            className="bg-gray-200 hover:scale-110 dark:bg-gray-700 rounded-full px-3 py-1 right-0 text-sm font-semibold text-cyan-200 mr-1"
           >
             Login
           </button>

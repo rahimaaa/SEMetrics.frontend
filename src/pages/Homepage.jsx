@@ -5,7 +5,7 @@ function Homepage() {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
-      <div className="flex-grow bg-white">
+      <div className="flex-grow bg-gray-900">
         {/* Content of the page */}
         <input className=" " text=" link to the repo"></input>
       </div>
