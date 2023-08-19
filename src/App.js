@@ -33,8 +33,8 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile user={user} />} />
-        <Route path="/colab-metrics" element={<ColabMetrics />} />
-        <Route path="/coding-metrics" element={<CodingMetrics />} />
+        <Route path="/colab-metrics/:repoName" element={<ColabMetrics />} />
+        <Route path="/coding-metrics/:repoName" element={<CodingMetrics />} />
         <Route path="/repos/:repoName" element={<RepoMetrics />} />
         <Route path="/backend-testing" element={<BackendTesting />} />
       </Routes>
