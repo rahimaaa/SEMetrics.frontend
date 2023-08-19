@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Metric() {
   const navigate = useNavigate();
+  const { repoName } = useParams();
   const handleColabClick = () => {
-    navigate("../colab-metrics");
+    navigate(`../colab-metrics/${repoName}`);
   };
   const handleCodingClick = () => {
-    navigate("../coding-metrics");
+    navigate(`../coding-metrics/${repoName}`);
   };
   return (
     <div className="flex text-black items-end">
