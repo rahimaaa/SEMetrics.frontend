@@ -6,6 +6,8 @@ import axios from "axios";
 function Dashboard() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
+  const [repos, setRepos] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -14,10 +16,9 @@ function Dashboard() {
   const handleOptionSelect = (event) => {
     const selectedText = event.target.innerText;
     setSelectedValue(selectedText);
+    setSearchTerm(selectedText)
     setIsDropdownOpen(false);
   };
-
-  const [repos, setRepos] = useState(null);
 
   useEffect(() => {
     getRepos();
@@ -34,7 +35,9 @@ function Dashboard() {
       console.log(error);
     }
   };
-
+  const filteredRepos = repos.filter((repo) => 
+    repo.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div className="flex bg-slate-900">
       <SideNavBar />
@@ -48,26 +51,36 @@ function Dashboard() {
           >
             Select a Repository
           </label>
+        
           <div
-            id="repos"
+            id="repo-wrapper"
             className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-            onClick={handleDropdownToggle}
-            onBlur={() => setIsDropdownOpen(false)}
           >
-            {selectedValue || "Select a Repository"}
+          <input
+            id="repos"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            placeholder={searchTerm|| "Select a Repository"}
+            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+            onFocus={handleDropdownToggle}
+          />
           </div>
           {isDropdownOpen && (
             <div className="flex flex-col justify-between border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full mt-2 max-h-40 overflow-y-auto">
               <ul className="dropdown-list divide-y-2 divide-slate-500">
-                {repos.map((repo) => (
+              {filteredRepos.length === 0 ? (
+                <li className="p-2 text-center text-white">repo does not exist</li>
+                ) : (
+                filteredRepos.map((repo) => (
                   <li
                     key={repo.id}
-                    className="dropdown-item p-2 rounded hover:bg-gray-500"
+                    className="dropdown-item p-2 rounded hover:bg-gray-500 cursor-pointer"
                     onClick={handleOptionSelect}
                   >
                     {repo.name}
                   </li>
-                ))}
+                ))
+              )}
               </ul>
             </div>
           )}
