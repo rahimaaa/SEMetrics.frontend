@@ -74,19 +74,7 @@ function SideNavBar() {
               Dashboard
             </span>
           </li>
-          <li
-            className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-2"
-            onClick={handleShowMetrics}
-          >
-            <img
-              src={stats}
-              alt="metric"
-              className="gap-x-4 top-9 w-10 items-center"
-            />
-            <span className={`${!open && "hidden"} origin-left duration-200`}>
-              metric
-            </span>
-          </li>
+         
           <li
             className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-2"
             onClick={handleShowProfile}
