@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import semlogo from "../assets/semlogo.png";
 import github from "../assets/github.png";
 import stats from "../assets/stats.png";
-import arrow from "../assets/arrow.png";
+import arrow from "../assets/arrow1.png";
 import logouticon from "../assets/logouticon.png";
 import home from "../assets/home.png";
 import axios from "axios";
@@ -74,7 +74,7 @@ function SideNavBar() {
               Dashboard
             </span>
           </li>
-         
+
           <li
             className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-cyan-100 text-sm items-center gap-x-4 mt-2"
             onClick={handleShowProfile}
@@ -97,7 +97,11 @@ function SideNavBar() {
               alt="logout"
               className="gap-x-4 top-9 w-10 items-center"
             />
-            <span className={`${!open && "hidden"} origin-left text-cyan-100 duration-200`}>
+            <span
+              className={`${
+                !open && "hidden"
+              } origin-left text-cyan-100 duration-200`}
+            >
               Logout
             </span>
           </li>
