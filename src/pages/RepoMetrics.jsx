@@ -178,8 +178,9 @@ const RepoMetrics = () => {
   }, [repo]);
 
   return (
-    <div>
+    <div className="bg-slate-900 text-white h-screen">
       <h1>Repository Metrics for {repoName}</h1>
+      <div className="flex flex-wrap">
       <div style={{ margin: "20px" }}>
         <h1>Impact Chart</h1>
         <ImpactChart repo_name={repoName} />

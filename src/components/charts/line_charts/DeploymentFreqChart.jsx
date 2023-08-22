@@ -38,7 +38,7 @@ colors={{ datum: "color" }} -> to use the color provided in the data
   }, []);
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsiveLine
           data={data}
@@ -70,6 +70,21 @@ colors={{ datum: "color" }} -> to use the color provided in the data
                 stroke: "hsl(240, 70%, 50%)", // Set the line color here
                 strokeWidth: 2, // Adjust the line width as needed
               },
+            },
+            axis: {
+              ticks: {
+                text: {
+                  fill: "#9c9c9c",
+                }
+              },
+              domain: {
+                line: {
+                  stroke: "#9c9c9c",
+                }
+              }
+            },
+            tooltip: {
+              color: "black",
             },
           }}
           yFormat=" >-.2f"
