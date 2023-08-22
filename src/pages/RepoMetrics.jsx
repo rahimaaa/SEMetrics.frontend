@@ -2,6 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ImpactChart from "../components/charts/line_charts/ImpactChart";
+import DeploymentFreqChart from "../components/charts/line_charts/DeploymentFreqChart";
+import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorChart";
+import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -44,7 +48,7 @@ const RepoMetrics = () => {
     async function fetchRepoCollabs() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/collabs/${repoName}`,
+          `http://localhost:8080/account/repos/contributors/${repoName}`,
           {
             withCredentials: true,
           }
@@ -94,22 +98,102 @@ const RepoMetrics = () => {
         console.log("Error fetching repo complexity data: ", error);
       }
     };
-    fetchRepoImpact();
+    const fectchUnreviewsPr = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/pulls/unreview-pr/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Unreview PR Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    const fectchResponsivenessPr = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/pulls/responsiveness/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Responsiveness Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    const fectchFollowOnCommitsPr = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/pulls/follow-on-commits/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Follow On Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    const fectChangeFailureRate = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/change-failure-rate/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Change Failure Rate Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    const fetchDeploymentFreq = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/account/repos/deployment-frequency/${repoName}`,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log("Deployment Frequency Rate Data:", response.data);
+      } catch (error) {
+        console.log("Error fetching repo complexity data: ", error);
+      }
+    };
+    // fetchRepoImpact();
     fetchRepoCollabs();
-    fetchNewWork();
-    fetchRepoComplexity();
-    fetchRepoLegacyRefactor();
+    // fetchNewWork();
+    // fetchRepoComplexity();
+    // fetchRepoLegacyRefactor();
+    // fectchResponsivenessPr();
+    // fectchUnreviewsPr();
+    // fectchFollowOnCommitsPr();
+    // fectChangeFailureRate();
+    // fetchDeploymentFreq();
   }, [repo]);
 
   return (
     <div>
       <h1>Repository Metrics for {repoName}</h1>
-
-      {impactData && impactData.length > 0 ? (
-        <h1>Check the console</h1>
-      ) : (
-        <h3>No impact data available for this repository.</h3>
-      )}
+      <div style={{ margin: "20px" }}>
+        <h1>Impact Chart</h1>
+        <ImpactChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Deployment Frequency Chart</h1>
+        <DeploymentFreqChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Legacy Refactor Chart</h1>
+        <LegacyRefactorChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Commit Complexity Chart</h1>
+        <CommitComplexityChart repo_name={repoName} />
+      </div>
     </div>
   );
 };
