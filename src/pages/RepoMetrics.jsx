@@ -206,6 +206,7 @@ const RepoMetrics = () => {
         <TimeToFirstCommentChart repo_name={repoName} />
       </div>
     </div>
+    </div>
   );
 };
 
