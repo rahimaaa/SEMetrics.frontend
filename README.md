@@ -1,15 +1,31 @@
 
 # Git Pulse Frontend
 
+Welcome to GitPulse!
+
 GitPulse is an application that provides insightful metrics and analytics for your GitHub repositories. This frontend repository contains the user interface components and interactions for GitPulse.
 
 ![GitPulse Screenshot](src/images/gitpulse.png)
 
 ## Features
 
-- Visualize key repository metrics such as deployment frequency, code quality, collaboration insights, and more.
-- Track pull request activity, responsiveness, and code review statistics.
-- [Add more features here...]
+### Coding Metrics
+Analyze code quality, frequency, and other vital statistics.
+
+### Collaborative Metrics
+Measure team collaboration, PR reviews, and more.
+
+### Secure Authentication
+OAuth 2.0 ensures your credentials remain private.
+
+## Why Choose GitPulse?
+
+GitPulse offers an intuitive platform tailored for developers and project managers alike. With a focus on transparency and security, we ensure your data is both insightful and safe.
+
+- **Intuitive Design:** Easy-to-navigate dashboards and metrics visualization.
+- **Top-notch Security:** Your credentials are never stored or shared.
+- **Data Transparency:** Know exactly what data we access and how we use it.
+- **GitHub Integration:** Seamless integration with your GitHub repositories.
 
 ## Table of Contents
 
@@ -19,7 +35,7 @@ GitPulse is an application that provides insightful metrics and analytics for yo
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
-- [License](#license)
+<!-- - [License](#license) -->
 
 ## Getting Started
 
@@ -27,22 +43,31 @@ GitPulse is an application that provides insightful metrics and analytics for yo
 
 Before you begin, ensure you have met the following requirements:
 
-- Node.js (version x.x.x)
-- npm (version x.x.x)
+- [Node.js](https://nodejs.org/) (version x.x.x)
+- [npm](https://www.npmjs.com/) (version x.x.x)
 - GitPulse Backend API up and running (Provide link to the backend repository)
+
+You can check if you have Node.js and npm installed by running the following commands in your terminal:
+
+```bash
+node -v
+npm -v
+```
+If these commands don't return version numbers, you'll need to download and install them.
+
 
 ### Installation
 
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your-username/gitpulse-frontend.git
+   git clone https://github.com/rahimaaa/SEMetrics.frontend.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd gitpulse-frontend
+   cd SEMetrics.frontend
    ```
 
 3. Install the dependencies:
@@ -69,7 +94,10 @@ Before you begin, ensure you have met the following requirements:
 
 ## Configuration
 
-- [Explain any configuration settings or environment variables...]
+- Place this in your env file
+```
+    REACT_APP_BACKEND_URL = http://localhost:8080
+```
 
 ## Contributing
 
@@ -83,9 +111,9 @@ Contributions are welcome! If you'd like to contribute to GitPulse, please follo
 
 Please refer to our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
-## License
+<!-- ## License
 
 This project is licensed under the [MIT License](LICENSE).
 ```
 
-Just replace placeholders like `your-username`, `x.x.x`, and others with your actual information. Make sure to add actual content, screenshots, and specific instructions as needed to make the README meaningful for your GitPulse frontend application.
+Just replace placeholders like `your-username`, `x.x.x`, and others with your actual information. Make sure to add actual content, screenshots, and specific instructions as needed to make the README meaningful for your GitPulse frontend application. -->
