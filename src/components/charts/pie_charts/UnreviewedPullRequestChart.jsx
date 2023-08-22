@@ -6,7 +6,7 @@ const UnreviewedPullRequestChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
-    const fetchImpactData = async () => {
+    const fetchtData = async () => {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/unreview-pr/${repo_name}`
@@ -17,7 +17,7 @@ const UnreviewedPullRequestChart = ({ repo_name }) => {
         console.log(error);
       }
     };
-    fetchImpactData();
+    fetchtData();
   }, []);
 
   const customColorGenerator = (data) =>
