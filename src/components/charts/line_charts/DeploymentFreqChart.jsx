@@ -29,16 +29,24 @@ colors={{ datum: "color" }} -> to use the color provided in the data
           `${process.env.REACT_APP_BACKEND_URL}/account/repos/deployment-frequency/${repo_name}`
         );
         console.log("Deployment Data: ", response);
-        setData(response.data.graphData);
+        // Sort data points by date in ascending order
+        const sortedData = response.data.graphData.map((item) => ({
+          ...item,
+          data: item.data.sort((a, b) => new Date(a.x) - new Date(b.x)),
+        }));
+        setData(sortedData);
       } catch (error) {
         console.log(error);
       }
     };
     fetchDeploymentData();
-  }, []);
+  }, [repo_name]);
 
   return (
-    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{ height: "300px", width: "500px" }}
+    >
       {data ? (
         <ResponsiveLine
           data={data}
@@ -75,13 +83,13 @@ colors={{ datum: "color" }} -> to use the color provided in the data
               ticks: {
                 text: {
                   fill: "#9c9c9c",
-                }
+                },
               },
               domain: {
                 line: {
                   stroke: "#9c9c9c",
-                }
-              }
+                },
+              },
             },
             tooltip: {
               color: "black",

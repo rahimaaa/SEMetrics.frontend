@@ -30,7 +30,11 @@ colors={{ datum: "color" }} -> to use the color provided in the data
           `${process.env.REACT_APP_BACKEND_URL}/account/repos/impact/${repo_name}`
         );
         console.log("Impact Data: ", response);
-        setData(response.data);
+        const sortedData = response.data.map((item) => ({
+          ...item,
+          data: item.data.sort((a, b) => new Date(a.x) - new Date(b.x)),
+        }));
+        setData(sortedData);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +45,10 @@ colors={{ datum: "color" }} -> to use the color provided in the data
   console.log(data);
 
   return (
-    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px"}}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{ height: "300px", width: "500px" }}
+    >
       {data ? (
         <ResponsiveLine
           data={data}
@@ -78,13 +85,13 @@ colors={{ datum: "color" }} -> to use the color provided in the data
               ticks: {
                 text: {
                   fill: "#9c9c9c",
-                }
+                },
               },
               domain: {
                 line: {
                   stroke: "#9c9c9c",
-                }
-              }
+                },
+              },
             },
             tooltip: {
               color: "black",
