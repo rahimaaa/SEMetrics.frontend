@@ -6,6 +6,8 @@ import ImpactChart from "../components/charts/line_charts/ImpactChart";
 import DeploymentFreqChart from "../components/charts/line_charts/DeploymentFreqChart";
 import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorChart";
 import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
+import UnreviewedPullRequestChart from "../components/charts/pie_charts/UnreviewedPullRequestChart";
+import TimeToFirstCommentChart from "../components/charts/line_charts/TimeToFirstComment";
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -195,6 +197,13 @@ const RepoMetrics = () => {
         <h1>Commit Complexity Chart</h1>
         <CommitComplexityChart repo_name={repoName} />
       </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Unreviewed Pull Request Chart</h1>
+        <UnreviewedPullRequestChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Time To First Comment Chart</h1>
+        <TimeToFirstCommentChart repo_name={repoName} />
       </div>
     </div>
   );
