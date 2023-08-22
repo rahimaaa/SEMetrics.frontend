@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Homepage, ColabMetrics, CodingMetrics } from "./pages";
+import { LandingPage, ColabMetrics, CodingMetrics } from "./pages";
 import BackendTesting from "./components/BackendTesting";
 import RepoMetrics from "./pages/RepoMetrics";
 import axios from "axios";
@@ -30,7 +30,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/colab-metrics/:repoName" element={<ColabMetrics />} />
