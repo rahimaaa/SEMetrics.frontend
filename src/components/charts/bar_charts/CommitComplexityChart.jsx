@@ -21,7 +21,7 @@ const CommitComplexityChart = ({ repo_name }) => {
   }, [repo_name]);
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsiveBar
           data={data}
@@ -42,7 +42,7 @@ const CommitComplexityChart = ({ repo_name }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Date", // Change the legend to "Date"
+            // legend: "Date", // Change the legend to "Date"
             legendPosition: "middle",
             legendOffset: 32,
           }}
@@ -50,7 +50,7 @@ const CommitComplexityChart = ({ repo_name }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Complexity", // Change the legend to "Complexity"
+            // legend: "Complexity", // Change the legend to "Complexity"
             legendPosition: "middle",
             legendOffset: -40,
           }}
@@ -89,6 +89,25 @@ const CommitComplexityChart = ({ repo_name }) => {
           barAriaLabel={(e) =>
             e.id + ": " + e.formattedValue + " on Date: " + e.indexValue
           }
+          theme={{
+            axis: {
+              ticks: {
+                text: {
+                  fill: "#9c9c9c",
+                }
+              },
+              domain: {
+                line: {
+                  stroke: "#9c9c9c",
+                }
+              }
+            },
+            legends: {
+              text: {
+                fill: "#9c9c9c",
+              }
+            }
+          }}
         />
       ) : (
         <>

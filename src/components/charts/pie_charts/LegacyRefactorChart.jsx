@@ -22,9 +22,8 @@ const LegacyRefactorChart = ({ repo_name }) => {
 
   const customColorGenerator = (data) =>
     data.label === "commits affecting code" ? "#02DBFE" : "#00B4FF";
-
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsivePie
           data={data}
@@ -65,6 +64,11 @@ const LegacyRefactorChart = ({ repo_name }) => {
               spacing: 10,
             },
           ]}
+          theme={{
+            tooltip: {
+              color: "black",
+            },
+          }}
           //   legends={[
           //     {
           //       anchor: "top-left",
