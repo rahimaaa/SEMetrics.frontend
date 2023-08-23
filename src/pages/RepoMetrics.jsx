@@ -163,6 +163,16 @@ const RepoMetrics = () => {
         console.log("Error fetching repo complexity data: ", error);
       }
     };
+    const fectchTimeToMerge = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/time-to-merge/${repoName}`
+        );
+        console.log("time to merge data: ", response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     // fetchRepoImpact();
     fetchRepoCollabs();
     // fetchNewWork();
@@ -173,6 +183,7 @@ const RepoMetrics = () => {
     // fectchFollowOnCommitsPr();
     // fectChangeFailureRate();
     // fetchDeploymentFreq();
+    fectchTimeToMerge();
   }, [repo]);
 
   return (

@@ -65,31 +65,31 @@ const LegacyRefactorChart = ({ repo_name }) => {
               spacing: 10,
             },
           ]}
-          //   legends={[
-          //     {
-          //       anchor: "top-left",
-          //       direction: "column",
-          //       justify: false,
-          //       translateX: 0,
-          //       translateY: 56,
-          //       itemsSpacing: 10,
-          //       itemWidth: 100,
-          //       itemHeight: 18,
-          //       itemTextColor: "#999", // Change to your preferred legend text color
-          //       itemDirection: "left-to-right",
-          //       itemOpacity: 1,
-          //       symbolSize: 18,
-          //       symbolShape: "circle",
-          //       effects: [
-          //         {
-          //           on: "hover",
-          //           style: {
-          //             itemTextColor: "#000",
-          //           },
+          // legends={[
+          //   {
+          //     anchor: "top-left",
+          //     direction: "column",
+          //     justify: false,
+          //     translateX: 0,
+          //     translateY: 56,
+          //     itemsSpacing: 10,
+          //     itemWidth: 100,
+          //     itemHeight: 18,
+          //     itemTextColor: "#999", // Change to your preferred legend text color
+          //     itemDirection: "left-to-right",
+          //     itemOpacity: 1,
+          //     symbolSize: 18,
+          //     symbolShape: "circle",
+          //     effects: [
+          //       {
+          //         on: "hover",
+          //         style: {
+          //           itemTextColor: "#000",
           //         },
-          //       ],
-          //     },
-          //   ]}
+          //       },
+          //     ],
+          //   },
+          // ]}
         />
       ) : (
         <>
