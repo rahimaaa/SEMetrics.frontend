@@ -40,15 +40,15 @@ function SideBar() {
             <h1 className="text-cyan-500">Development Time</h1>
             <p className= " p-2 text-cyan-100">{developmentTime}</p>
           </div>
-          <div className = " mt-6">
-            <h1 className="text-cyan-500 ">Developers: {contributors.length}</h1>
+          <div className = "mt-6">
+            <h1 className="text-cyan-500 pb-1">Developers: {contributors.length}</h1>
             <div className="h-48 overflow-y-scroll">
-              <div  className= "p-2 text-cyan-100">
+              <div  className= "pl-2 text-cyan-100">
                 {
                   contributors?.slice(0, showAll ? contributors.length : 3).map((contributor) => {
                     return (
                       <div key={contributor.id}>
-                        <p>{contributor.login}</p>
+                        <a className="hover:text-emerald-500" href={contributor.html_url} target="_blank">{contributor.login}</a>
                         <p className="ml-5 p-2"> Contribution: {contributor.contributions}</p>
                       </div>
                     )
