@@ -12,7 +12,7 @@ const RepoMetrics = () => {
     const fetchRepo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos/${repoName}`,
           {
             withCredentials: true,
           }
@@ -30,7 +30,7 @@ const RepoMetrics = () => {
     const fetchRepoImpact = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/impact/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos/impact/${repoName}`,
           {
             withCredentials: true,
           }
@@ -44,7 +44,7 @@ const RepoMetrics = () => {
     async function fetchRepoCollabs() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/collabs/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos/collabs/${repoName}`,
           {
             withCredentials: true,
           }
@@ -58,7 +58,7 @@ const RepoMetrics = () => {
     async function fetchNewWork() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/new_work/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos/new_work/${repoName}`,
           {
             withCredentials: true,
           }
@@ -71,7 +71,7 @@ const RepoMetrics = () => {
     const fetchRepoComplexity = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/complexity/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos/complexity/${repoName}`,
           {
             withCredentials: true,
           }
@@ -84,7 +84,7 @@ const RepoMetrics = () => {
     const fetchRepoLegacyRefactor = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos//legacy-refactor/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}account/repos//legacy-refactor/${repoName}`,
           {
             withCredentials: true,
           }
