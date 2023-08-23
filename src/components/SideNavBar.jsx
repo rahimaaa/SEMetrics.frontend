@@ -12,7 +12,7 @@ function SideNavBar() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
   const handleLogout = async () => {
-    const response = await axios.get("http://localhost:8080/auth/logout", {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`, {
       withCredentials: true,
     });
     console.log(response);

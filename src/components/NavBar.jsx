@@ -8,7 +8,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   // useEffect(()=>{
   //   const fecthcUser = async ()=> {
-  //     const response = await axios.get("http://localhost:8080/account/", {withCredentials: true});
+  //     const response = await axios.get("${process.env.REACT_APP_BACKEND_URL}/account/", {withCredentials: true});
   //     if(response.status === 200){
   //       setUser(response.data);
   //     }
@@ -18,14 +18,14 @@ const NavBar = () => {
   // },[])
   const handleLogin = async () => {
     try {
-      window.open("http://localhost:8080/auth/github", "_self");
+      window.open(`${process.env.REACT_APP_BACKEND_URL}/auth/github`, "_self");
     } catch (error) {
       console.error("Error during GitHub login:", error);
     }
   };
 
   const handleLogout = async () => {
-    const response = await axios.get("http://localhost:8080/auth/logout", {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`, {
       withCredentials: true,
     });
     if (response.status === 200) {

@@ -60,7 +60,7 @@ export default function LeadTimeForChange({ repo_name }) {
         const fetchLeadTimeData = async () => {
           try {
             const response = await axios.get(
-              `${process.env.REACT_APP_BACKEND_URL}account/repos/lead_time/${repo_name}`
+              `${process.env.REACT_APP_BACKEND_URL}/account/repos/lead_time/${repo_name}`
             );
             console.log("Leadtime Data: ", response);
             // Sort data points by date in ascending order

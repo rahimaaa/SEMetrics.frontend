@@ -27,7 +27,7 @@ function Dashboard() {
 
   const getRepos = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/account/repos/", {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/account/repos/`, {
         withCredentials: true,
       });
       console.log("response\n", response.data);

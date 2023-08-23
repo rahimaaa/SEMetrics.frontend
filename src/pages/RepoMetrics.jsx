@@ -18,7 +18,7 @@ const RepoMetrics = () => {
     const fetchRepo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/${repoName}`,
           {
             withCredentials: true,
           }
@@ -36,7 +36,7 @@ const RepoMetrics = () => {
     const fetchRepoImpact = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/impact/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/impact/${repoName}`,
           {
             withCredentials: true,
           }
@@ -50,7 +50,7 @@ const RepoMetrics = () => {
     async function fetchRepoCollabs() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/contributors/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/contributors/${repoName}`,
           {
             withCredentials: true,
           }
@@ -64,7 +64,7 @@ const RepoMetrics = () => {
     async function fetchNewWork() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/new_work/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/new_work/${repoName}`,
           {
             withCredentials: true,
           }
@@ -77,7 +77,7 @@ const RepoMetrics = () => {
     const fetchRepoComplexity = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/complexity/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/complexity/${repoName}`,
           {
             withCredentials: true,
           }
@@ -90,7 +90,7 @@ const RepoMetrics = () => {
     const fetchRepoLegacyRefactor = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos//legacy-refactor/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos//legacy-refactor/${repoName}`,
           {
             withCredentials: true,
           }
@@ -103,7 +103,7 @@ const RepoMetrics = () => {
     const fectchUnreviewsPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/unreview-pr/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/unreview-pr/${repoName}`,
           {
             withCredentials: true,
           }
@@ -116,7 +116,7 @@ const RepoMetrics = () => {
     const fectchResponsivenessPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/responsiveness/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/responsiveness/${repoName}`,
           {
             withCredentials: true,
           }
@@ -129,7 +129,7 @@ const RepoMetrics = () => {
     const fectchFollowOnCommitsPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/follow-on-commits/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/follow-on-commits/${repoName}`,
           {
             withCredentials: true,
           }
@@ -142,7 +142,7 @@ const RepoMetrics = () => {
     const fectChangeFailureRate = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/change-failure-rate/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/change-failure-rate/${repoName}`,
           {
             withCredentials: true,
           }
@@ -155,7 +155,7 @@ const RepoMetrics = () => {
     const fetchDeploymentFreq = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/deployment-frequency/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/deployment-frequency/${repoName}`,
           {
             withCredentials: true,
           }
