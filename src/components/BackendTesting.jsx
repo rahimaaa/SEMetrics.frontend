@@ -10,7 +10,7 @@ const BackendTesting = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}account/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/account/`, {
           withCredentials: true,
         });
         console.log(response.data);
@@ -24,7 +24,7 @@ const BackendTesting = () => {
 
   const getRepos = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}account/repos/`, {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/account/repos/`, {
         withCredentials: true,
       });
       console.log("response\n", response.data);
@@ -35,7 +35,7 @@ const BackendTesting = () => {
   };
 
   const handleLogout = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}auth/logout`, {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`, {
       withCredentials: true,
     });
     console.log(response);

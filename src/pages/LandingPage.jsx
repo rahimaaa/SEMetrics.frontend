@@ -13,7 +13,7 @@ import TestimonialComponent from "../components/TestimonialComponent";
 function LandingPage() {
   const handleLogin = async () => {
     try {
-      window.open("${process.env.REACT_APP_BACKEND_URL}auth/github", "_self");
+      window.open("${process.env.REACT_APP_BACKEND_URL}/auth/github", "_self");
     } catch (error) {
       console.error("Error during GitHub login:", error);
     }

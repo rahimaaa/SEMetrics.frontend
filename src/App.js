@@ -16,7 +16,7 @@ function App() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}account/`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/`,
           {
             withCredentials: true,
           }
