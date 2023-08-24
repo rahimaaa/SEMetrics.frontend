@@ -8,6 +8,9 @@ import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorC
 import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
 import UnreviewedPullRequestChart from "../components/charts/pie_charts/UnreviewedPullRequestChart";
 import TimeToFirstCommentChart from "../components/charts/line_charts/TimeToFirstComment";
+import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
+import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
+
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -165,8 +168,18 @@ const RepoMetrics = () => {
         console.log("Error fetching repo complexity data: ", error);
       }
     };
+    const fectchTimeToMerge = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/time-to-merge/${repoName}`
+        );
+        console.log("time to merge data: ", response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     // fetchRepoImpact();
-    fetchRepoCollabs();
+    // fetchRepoCollabs();
     // fetchNewWork();
     // fetchRepoComplexity();
     // fetchRepoLegacyRefactor();
@@ -175,6 +188,7 @@ const RepoMetrics = () => {
     // fectchFollowOnCommitsPr();
     // fectChangeFailureRate();
     // fetchDeploymentFreq();
+    // fectchTimeToMerge();
   }, [repo]);
 
   return (
@@ -197,7 +211,7 @@ const RepoMetrics = () => {
         <h1>Commit Complexity Chart</h1>
         <CommitComplexityChart repo_name={repoName} />
       </div>
-      <div style={{ margin: "20px" }}>
+      <div>
         <h1>Unreviewed Pull Request Chart</h1>
         <UnreviewedPullRequestChart repo_name={repoName} />
       </div>
@@ -205,7 +219,16 @@ const RepoMetrics = () => {
         <h1>Time To First Comment Chart</h1>
         <TimeToFirstCommentChart repo_name={repoName} />
       </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Follow On Commit Chart</h1>
+        <FollowOnCommitChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Responsiveness Chart</h1>
+        <PrResponsivenessChart repo_name={repoName} />
+      </div>
     </div>
+
     </div>
   );
 };
