@@ -90,8 +90,8 @@ function LandingPage() {
       <footer className="bg-white pb-4">
         <div className="flex justify-between ml-24 mr-24 pb-18 mt-10">
           <div className="ml-8 flex mr-5 pr-10">
-            <img src={logo} height="50px" width="50px"></img>
-            <p className="text-4xl font-bold">GitPulse</p>
+            <img src={logo} height="50px" width="150px"></img>
+            {/* <p className="text-4xl font-bold">GitPulse</p> */}
           </div>
           <div className="flex space-x-10">
             <ul>
