@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import axios from "axios";
+import { bgcolor } from "@mui/system";
 
 const ImpactChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
@@ -29,7 +30,11 @@ colors={{ datum: "color" }} -> to use the color provided in the data
           `${process.env.REACT_APP_BACKEND_URL}/account/repos/impact/${repo_name}`
         );
         console.log("Impact Data: ", response);
-        setData(response.data);
+        const sortedData = response.data.map((item) => ({
+          ...item,
+          data: item.data.sort((a, b) => new Date(a.x) - new Date(b.x)),
+        }));
+        setData(sortedData);
       } catch (error) {
         console.log(error);
       }
@@ -37,8 +42,13 @@ colors={{ datum: "color" }} -> to use the color provided in the data
     fetchImpactData();
   }, []);
 
+  console.log(data);
+
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{ height: "300px", width: "500px" }}
+    >
       {data ? (
         <ResponsiveLine
           data={data}
@@ -67,9 +77,24 @@ colors={{ datum: "color" }} -> to use the color provided in the data
             },
             lines: {
               line: {
-                stroke: "hsl(240, 70%, 50%)", // Set the line color here
+                stroke: data.color, // Set the line color here
                 strokeWidth: 2, // Adjust the line width as needed
               },
+            },
+            axis: {
+              ticks: {
+                text: {
+                  fill: "#9c9c9c",
+                },
+              },
+              domain: {
+                line: {
+                  stroke: "#9c9c9c",
+                },
+              },
+            },
+            tooltip: {
+              color: "black",
             },
           }}
           yFormat=" >-.2f"

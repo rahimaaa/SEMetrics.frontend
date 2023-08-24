@@ -2,28 +2,29 @@ import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "axios";
 
-const LegacyRefactorChart = ({ repo_name }) => {
+const UnreviewedPullRequestChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
 
   useEffect(() => {
-    const fetchImpactData = async () => {
+    const fetchtData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/account/repos/legacy-refactor/${repo_name}`
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/unreview-pr/${repo_name}`
         );
-        console.log("Legacy Refractor Data: ", response);
+        console.log("Unreviewed Pull Request Data: ", response);
         setData(response.data.chartData);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchImpactData();
+    fetchtData();
   }, []);
 
   const customColorGenerator = (data) =>
-    data.label === "commits affecting code" ? "#02DBFE" : "#00B4FF";
+    data.label === "Total Pull Requests" ? "#02DBFE" : "#00B4FF";
+
   return (
-    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
+    <div style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsivePie
           data={data}
@@ -64,12 +65,31 @@ const LegacyRefactorChart = ({ repo_name }) => {
               spacing: 10,
             },
           ]}
-          theme={{
-            tooltip: {
-              color: "black",
-            },
-          }}
-
+          //   legends={[
+          //     {
+          //       anchor: "top-left",
+          //       direction: "column",
+          //       justify: false,
+          //       translateX: 0,
+          //       translateY: 56,
+          //       itemsSpacing: 10,
+          //       itemWidth: 100,
+          //       itemHeight: 18,
+          //       itemTextColor: "#999", // Change to your preferred legend text color
+          //       itemDirection: "left-to-right",
+          //       itemOpacity: 1,
+          //       symbolSize: 18,
+          //       symbolShape: "circle",
+          //       effects: [
+          //         {
+          //           on: "hover",
+          //           style: {
+          //             itemTextColor: "#000",
+          //           },
+          //         },
+          //       ],
+          //     },
+          //   ]}
         />
       ) : (
         <>
@@ -82,4 +102,4 @@ const LegacyRefactorChart = ({ repo_name }) => {
   );
 };
 
-export default LegacyRefactorChart;
+export default UnreviewedPullRequestChart;

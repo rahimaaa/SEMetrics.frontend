@@ -8,6 +8,7 @@ function Dashboard() {
   const [selectedValue, setSelectedValue] = useState("");
   const [repos, setRepos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -26,7 +27,7 @@ function Dashboard() {
 
   const getRepos = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/account/repos/", {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/account/repos/`, {
         withCredentials: true,
       });
       console.log("response\n", response.data);
@@ -54,7 +55,7 @@ function Dashboard() {
         
           <div
             id="repo-wrapper"
-            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 text-cyan-100 dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
+            className="border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           >
           <input
             id="repos"

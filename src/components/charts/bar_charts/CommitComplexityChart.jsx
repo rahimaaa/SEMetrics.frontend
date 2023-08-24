@@ -29,7 +29,7 @@ const CommitComplexityChart = ({ repo_name }) => {
   };
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div className="bg-slate-800 rounded-lg" style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsiveBar
           data={data}
@@ -74,6 +74,25 @@ const CommitComplexityChart = ({ repo_name }) => {
           barAriaLabel={(e) =>
             e.id + ": " + e.formattedValue + " on Commit: " + e.indexValue
           }
+          theme={{
+            axis: {
+              ticks: {
+                text: {
+                  fill: "#9c9c9c",
+                }
+              },
+              domain: {
+                line: {
+                  stroke: "#9c9c9c",
+                }
+              }
+            },
+            legends: {
+              text: {
+                fill: "#9c9c9c",
+              }
+            }
+          }}
         />
       ) : (
         <>

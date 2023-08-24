@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import axios from "axios";
 
-const DeploymentFreqChart = ({ repo_name }) => {
+const TimeToFirstCommentChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
   /*
     For reference - to remove grid and make the lines transparent
@@ -23,30 +23,22 @@ colors={{ datum: "color" }} -> to use the color provided in the data
 
 */
   useEffect(() => {
-    const fetchDeploymentData = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/account/repos/deployment-frequency/${repo_name}`
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/time_first_comment/${repo_name}`
         );
-        console.log("Deployment Data: ", response);
-        // Sort data points by date in ascending order
-        const sortedData = response.data.graphData.map((item) => ({
-          ...item,
-          data: item.data.sort((a, b) => new Date(a.x) - new Date(b.x)),
-        }));
-        setData(sortedData);
+        console.log("Time to First Comment Data: ", response);
+        setData(response.data.chartData);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchDeploymentData();
-  }, [repo_name]);
+    fetchData();
+  }, []);
 
   return (
-    <div
-      className="bg-slate-800 rounded-lg"
-      style={{ height: "300px", width: "500px" }}
-    >
+    <div style={{ height: "300px", width: "500px" }}>
       {data ? (
         <ResponsiveLine
           data={data}
@@ -78,21 +70,6 @@ colors={{ datum: "color" }} -> to use the color provided in the data
                 stroke: "hsl(240, 70%, 50%)", // Set the line color here
                 strokeWidth: 2, // Adjust the line width as needed
               },
-            },
-            axis: {
-              ticks: {
-                text: {
-                  fill: "#9c9c9c",
-                },
-              },
-              domain: {
-                line: {
-                  stroke: "#9c9c9c",
-                },
-              },
-            },
-            tooltip: {
-              color: "black",
             },
           }}
           yFormat=" >-.2f"
@@ -136,4 +113,4 @@ colors={{ datum: "color" }} -> to use the color provided in the data
   );
 };
 
-export default DeploymentFreqChart;
+export default TimeToFirstCommentChart;

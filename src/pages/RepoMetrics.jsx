@@ -6,8 +6,11 @@ import ImpactChart from "../components/charts/line_charts/ImpactChart";
 import DeploymentFreqChart from "../components/charts/line_charts/DeploymentFreqChart";
 import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorChart";
 import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
+import UnreviewedPullRequestChart from "../components/charts/pie_charts/UnreviewedPullRequestChart";
+import TimeToFirstCommentChart from "../components/charts/line_charts/TimeToFirstComment";
 import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
 import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
+
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -18,7 +21,7 @@ const RepoMetrics = () => {
     const fetchRepo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/${repoName}`,
           {
             withCredentials: true,
           }
@@ -36,7 +39,7 @@ const RepoMetrics = () => {
     const fetchRepoImpact = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/impact/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/impact/${repoName}`,
           {
             withCredentials: true,
           }
@@ -50,7 +53,7 @@ const RepoMetrics = () => {
     async function fetchRepoCollabs() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/contributors/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/contributors/${repoName}`,
           {
             withCredentials: true,
           }
@@ -64,7 +67,7 @@ const RepoMetrics = () => {
     async function fetchNewWork() {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/new_work/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/new_work/${repoName}`,
           {
             withCredentials: true,
           }
@@ -77,7 +80,7 @@ const RepoMetrics = () => {
     const fetchRepoComplexity = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/complexity/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/complexity/${repoName}`,
           {
             withCredentials: true,
           }
@@ -90,7 +93,7 @@ const RepoMetrics = () => {
     const fetchRepoLegacyRefactor = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos//legacy-refactor/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos//legacy-refactor/${repoName}`,
           {
             withCredentials: true,
           }
@@ -103,7 +106,7 @@ const RepoMetrics = () => {
     const fectchUnreviewsPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/unreview-pr/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/unreview-pr/${repoName}`,
           {
             withCredentials: true,
           }
@@ -116,7 +119,7 @@ const RepoMetrics = () => {
     const fectchResponsivenessPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/responsiveness/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/responsiveness/${repoName}`,
           {
             withCredentials: true,
           }
@@ -129,7 +132,7 @@ const RepoMetrics = () => {
     const fectchFollowOnCommitsPr = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/pulls/follow-on-commits/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/follow-on-commits/${repoName}`,
           {
             withCredentials: true,
           }
@@ -142,7 +145,7 @@ const RepoMetrics = () => {
     const fectChangeFailureRate = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/change-failure-rate/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/change-failure-rate/${repoName}`,
           {
             withCredentials: true,
           }
@@ -155,7 +158,7 @@ const RepoMetrics = () => {
     const fetchDeploymentFreq = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/account/repos/deployment-frequency/${repoName}`,
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/deployment-frequency/${repoName}`,
           {
             withCredentials: true,
           }
@@ -189,8 +192,9 @@ const RepoMetrics = () => {
   }, [repo]);
 
   return (
-    <div>
+    <div className="bg-slate-900 text-white h-screen">
       <h1>Repository Metrics for {repoName}</h1>
+      <div className="flex flex-wrap">
       <div style={{ margin: "20px" }}>
         <h1>Impact Chart</h1>
         <ImpactChart repo_name={repoName} />
@@ -207,6 +211,14 @@ const RepoMetrics = () => {
         <h1>Commit Complexity Chart</h1>
         <CommitComplexityChart repo_name={repoName} />
       </div>
+      <div>
+        <h1>Unreviewed Pull Request Chart</h1>
+        <UnreviewedPullRequestChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Time To First Comment Chart</h1>
+        <TimeToFirstCommentChart repo_name={repoName} />
+      </div>
       <div style={{ margin: "20px" }}>
         <h1>Follow On Commit Chart</h1>
         <FollowOnCommitChart repo_name={repoName} />
@@ -215,6 +227,8 @@ const RepoMetrics = () => {
         <h1>Responsiveness Chart</h1>
         <PrResponsivenessChart repo_name={repoName} />
       </div>
+    </div>
+
     </div>
   );
 };
