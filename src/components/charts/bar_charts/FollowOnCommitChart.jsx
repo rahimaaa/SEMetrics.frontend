@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ResponsiveBar } from "@nivo/bar"; // Import the bar chart component
 import axios from "axios";
 
-const CommitComplexityChart = ({ repo_name }) => {
+const FollowOnCommitChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
   const [keys, setKeys] = useState(undefined);
 
@@ -10,9 +10,9 @@ const CommitComplexityChart = ({ repo_name }) => {
     const fetchComplexityData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/account/repos/complexity/${repo_name}`
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/follow-on-commits/${repo_name}`
         );
-        console.log("Commit Complexity Data: ", response);
+        console.log("Follow On Commit Data: ", response);
         setData(response.data.chartData);
         setKeys(response.data.keys);
       } catch (error) {
@@ -22,10 +22,16 @@ const CommitComplexityChart = ({ repo_name }) => {
     fetchComplexityData();
   }, [repo_name]);
 
-  // Define a color scale function
   const getColor = (id) => {
     const colorKey = `${id}Color`;
-    return data.find((item) => item.commit === id)[colorKey];
+    const item = data.find((item) => item.hasOwnProperty(id));
+
+    if (item) {
+      return item[colorKey];
+    } else {
+      // Return a default color if the item is not found
+      return "hsl(0, 0%, 50%)"; // You can set any default color you prefer
+    }
   };
 
   return (
@@ -34,12 +40,12 @@ const CommitComplexityChart = ({ repo_name }) => {
         <ResponsiveBar
           data={data}
           keys={keys}
-          indexBy="commit"
+          indexBy="PR"
           margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
           padding={0.1}
           valueScale={{
             type: "linear",
-            max: 5000, // Set your desired maximum value here
+            max: 20, // Set your desired maximum value here
           }}
           indexScale={{ type: "band", round: true }}
           colors={({ id }) => getColor(id)} // Use the getColor function
@@ -51,7 +57,7 @@ const CommitComplexityChart = ({ repo_name }) => {
           axisRight={null}
           axisBottom={{
             tickValues: [], // Remove tick labels
-            legend: "Commit", // Keep the x-axis title
+            legend: "Pull Request", // Keep the x-axis title
             legendPosition: "middle",
             legendOffset: 15,
           }}
@@ -59,7 +65,7 @@ const CommitComplexityChart = ({ repo_name }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Commit Complexity",
+            legend: "Follow-On-Commit",
             legendPosition: "middle",
             legendOffset: -50,
           }}
@@ -69,10 +75,17 @@ const CommitComplexityChart = ({ repo_name }) => {
             from: "color",
             modifiers: [["darker", 1.6]],
           }}
+          tooltip={({ id, value, data }) => (
+            <div style={{ background: "white", padding: "5px" }}>
+              <strong>{`${data.PR}`}</strong>
+              <br />
+              Follow-On Commits: {value}
+            </div>
+          )}
           role="application"
           ariaLabel="Nivo bar chart demo"
           barAriaLabel={(e) =>
-            e.id + ": " + e.formattedValue + " on Commit: " + e.indexValue
+            `PR ${e.id}: ${e.formattedValue} Follow-On Commits`
           }
         />
       ) : (
@@ -84,4 +97,4 @@ const CommitComplexityChart = ({ repo_name }) => {
   );
 };
 
-export default CommitComplexityChart;
+export default FollowOnCommitChart;

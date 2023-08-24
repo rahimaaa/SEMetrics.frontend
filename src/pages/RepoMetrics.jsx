@@ -6,6 +6,7 @@ import ImpactChart from "../components/charts/line_charts/ImpactChart";
 import DeploymentFreqChart from "../components/charts/line_charts/DeploymentFreqChart";
 import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorChart";
 import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
+import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -174,7 +175,7 @@ const RepoMetrics = () => {
       }
     };
     // fetchRepoImpact();
-    fetchRepoCollabs();
+    // fetchRepoCollabs();
     // fetchNewWork();
     // fetchRepoComplexity();
     // fetchRepoLegacyRefactor();
@@ -183,7 +184,7 @@ const RepoMetrics = () => {
     // fectchFollowOnCommitsPr();
     // fectChangeFailureRate();
     // fetchDeploymentFreq();
-    fectchTimeToMerge();
+    // fectchTimeToMerge();
   }, [repo]);
 
   return (
@@ -204,6 +205,10 @@ const RepoMetrics = () => {
       <div style={{ margin: "20px" }}>
         <h1>Commit Complexity Chart</h1>
         <CommitComplexityChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Follow On Commit Chart</h1>
+        <FollowOnCommitChart repo_name={repoName} />
       </div>
     </div>
   );
