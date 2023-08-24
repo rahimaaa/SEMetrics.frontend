@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ResponsiveBar } from "@nivo/bar"; // Import the bar chart component
 import axios from "axios";
 
-const FollowOnCommitChart = ({ repo_name }) => {
+const PrResponsivenessChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
   const [keys, setKeys] = useState(undefined);
 
@@ -10,9 +10,9 @@ const FollowOnCommitChart = ({ repo_name }) => {
     const fetchComplexityData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/follow-on-commits/${repo_name}`
+          `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/responsiveness/${repo_name}`
         );
-        console.log("Follow On Commit Data: ", response);
+        console.log("PR Responsiveness Data: ", response);
         setData(response.data.chartData);
         setKeys(response.data.keys);
       } catch (error) {
@@ -45,7 +45,7 @@ const FollowOnCommitChart = ({ repo_name }) => {
           padding={0.1}
           valueScale={{
             type: "linear",
-            max: 20, // Set your desired maximum value here
+            max: 36, // Set your desired maximum value here
           }}
           indexScale={{ type: "band", round: true }}
           colors={({ id }) => getColor(id)} // Use the getColor function
@@ -65,7 +65,7 @@ const FollowOnCommitChart = ({ repo_name }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: "Follow-On-Commit",
+            legend: "Average Responsiveness - HR",
             legendPosition: "middle",
             legendOffset: -50,
           }}
@@ -78,7 +78,7 @@ const FollowOnCommitChart = ({ repo_name }) => {
           tooltip={({ id, value, data }) => (
             <div style={{ background: "white", padding: "5px" }}>
               <strong>{`${data.PR} - `}</strong>
-              Follow-On Commits: {value}
+              AVG Responsiveness: {value}
             </div>
           )}
           role="application"
@@ -96,4 +96,4 @@ const FollowOnCommitChart = ({ repo_name }) => {
   );
 };
 
-export default FollowOnCommitChart;
+export default PrResponsivenessChart;

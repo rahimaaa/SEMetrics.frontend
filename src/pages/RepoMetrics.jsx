@@ -7,6 +7,7 @@ import DeploymentFreqChart from "../components/charts/line_charts/DeploymentFreq
 import LegacyRefactorChart from "../components/charts/pie_charts/LegacyRefactorChart";
 import CommitComplexityChart from "../components/charts/bar_charts/CommitComplexityChart";
 import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
+import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -209,6 +210,10 @@ const RepoMetrics = () => {
       <div style={{ margin: "20px" }}>
         <h1>Follow On Commit Chart</h1>
         <FollowOnCommitChart repo_name={repoName} />
+      </div>
+      <div style={{ margin: "20px" }}>
+        <h1>Responsiveness Chart</h1>
+        <PrResponsivenessChart repo_name={repoName} />
       </div>
     </div>
   );
