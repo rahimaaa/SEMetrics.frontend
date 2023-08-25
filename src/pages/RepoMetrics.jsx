@@ -10,8 +10,8 @@ import UnreviewedPullRequestChart from "../components/charts/pie_charts/Unreview
 import TimeToFirstCommentChart from "../components/charts/line_charts/TimeToFirstComment";
 import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
 import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
+import PrIterationTimeChart from "../components/charts/line_charts/PrIterationTimeChart";
 import TimeToMergeChart from "../components/charts/line_charts/TimeToMerge";
-
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -212,7 +212,9 @@ const RepoMetrics = () => {
           <h1>Commit Complexity Chart</h1>
           <CommitComplexityChart repo_name={repoName} />
         </div>
-        <div style={{ margin: "20px" }}>
+
+
+        <div style={{ margin: "20px" }}
           <h1>Unreviewed Pull Request Chart</h1>
           <UnreviewedPullRequestChart repo_name={repoName} />
         </div>
@@ -231,6 +233,10 @@ const RepoMetrics = () => {
         <div style={{ margin: "20px" }}>
           <h1>Time To Merge Chart</h1>
           <TimeToMergeChart repo_name={repoName} />
+        </div>
+        <div>
+        <h1>PR Iteration Time Chart</h1>
+          <PrIterationTimeChart repo_name={repoName} />
         </div>
       </div>
     </div>
