@@ -214,7 +214,7 @@ const RepoMetrics = () => {
         </div>
 
 
-        <div style={{ margin: "20px" }}
+        <div style={{ margin: "20px" }}>
           <h1>Unreviewed Pull Request Chart</h1>
           <UnreviewedPullRequestChart repo_name={repoName} />
         </div>
