@@ -10,6 +10,7 @@ import UnreviewedPullRequestChart from "../components/charts/pie_charts/Unreview
 import TimeToFirstCommentChart from "../components/charts/line_charts/TimeToFirstComment";
 import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitChart";
 import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
+import TimeToMergeChart from "../components/charts/line_charts/TimeToMerge";
 
 
 const RepoMetrics = () => {
@@ -195,40 +196,43 @@ const RepoMetrics = () => {
     <div className="bg-slate-900 text-white h-screen">
       <h1>Repository Metrics for {repoName}</h1>
       <div className="flex flex-wrap">
-      <div style={{ margin: "20px" }}>
-        <h1>Impact Chart</h1>
-        <ImpactChart repo_name={repoName} />
+        <div style={{ margin: "20px" }}>
+          <h1>Impact Chart</h1>
+          <ImpactChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Deployment Frequency Chart</h1>
+          <DeploymentFreqChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Legacy Refactor Chart</h1>
+          <LegacyRefactorChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Commit Complexity Chart</h1>
+          <CommitComplexityChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Unreviewed Pull Request Chart</h1>
+          <UnreviewedPullRequestChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Time To First Comment Chart</h1>
+          <TimeToFirstCommentChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Follow On Commit Chart</h1>
+          <FollowOnCommitChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Responsiveness Chart</h1>
+          <PrResponsivenessChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Time To Merge Chart</h1>
+          <TimeToMergeChart repo_name={repoName} />
+        </div>
       </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Deployment Frequency Chart</h1>
-        <DeploymentFreqChart repo_name={repoName} />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Legacy Refactor Chart</h1>
-        <LegacyRefactorChart repo_name={repoName} />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Commit Complexity Chart</h1>
-        <CommitComplexityChart repo_name={repoName} />
-      </div>
-      <div>
-        <h1>Unreviewed Pull Request Chart</h1>
-        <UnreviewedPullRequestChart repo_name={repoName} />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Time To First Comment Chart</h1>
-        <TimeToFirstCommentChart repo_name={repoName} />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Follow On Commit Chart</h1>
-        <FollowOnCommitChart repo_name={repoName} />
-      </div>
-      <div style={{ margin: "20px" }}>
-        <h1>Responsiveness Chart</h1>
-        <PrResponsivenessChart repo_name={repoName} />
-      </div>
-    </div>
-
     </div>
   );
 };
