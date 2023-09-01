@@ -22,6 +22,28 @@ const PrResponsivenessChart = ({ repo_name }) => {
     fetchComplexityData();
   }, [repo_name]);
 
+  const customTheme = {
+    axis: {
+      ticks: {
+        text: {
+          fill: "white", // Change axis label color to white
+          fontSize: 14,
+        },
+        domain: {
+          line: {
+            stroke: "transparent",
+          },
+        },
+      },
+      legend: {
+        text: {
+          fill: "white", // Change legend text color to white
+          fontSize: 14,
+        },
+      },
+    },
+  };
+
   const getColor = (id) => {
     const colorKey = `${id}Color`;
     const item = data.find((item) => item.hasOwnProperty(id));
@@ -29,52 +51,60 @@ const PrResponsivenessChart = ({ repo_name }) => {
     if (item) {
       return item[colorKey];
     } else {
-      // Return a default color if the item is not found
-      return "hsl(0, 0%, 50%)"; // You can set any default color you prefer
+      return "hsl(0, 0%, 50%)";
     }
   };
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="rounded-lg"
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
+    >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "15px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Pull Request Responsiveness
+      </h1>
       {data ? (
         <ResponsiveBar
           data={data}
           keys={keys}
           indexBy="PR"
-          margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+          margin={{ top: -10, right: 30, bottom: 20, left: 80 }}
           padding={0.1}
           valueScale={{
             type: "linear",
-            max: 36, // Set your desired maximum value here
+            max: 36,
           }}
           indexScale={{ type: "band", round: true }}
-          colors={({ id }) => getColor(id)} // Use the getColor function
+          colors={({ id }) => getColor(id)}
           borderColor={{
             from: "color",
-            modifiers: [["darker", 1.6]],
+            modifiers: [["darker", 0]],
           }}
+          borderWidth={0}
           axisTop={null}
           axisRight={null}
-          axisBottom={{
-            tickValues: [], // Remove tick labels
-            legend: "Pull Request", // Keep the x-axis title
-            legendPosition: "middle",
-            legendOffset: 15,
-          }}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "Average Responsiveness - HR",
-            legendPosition: "middle",
-            legendOffset: -50,
-          }}
+          axisBottom={null} // Remove axisBottom
+          axisLeft={null} // Remove axisLeft
+          gridXValues={null}
+          gridYValues={null}
           labelSkipWidth={12}
           labelSkipHeight={12}
-          labelTextColor={{
-            from: "color",
-            modifiers: [["darker", 1.6]],
-          }}
+          labelTextColor={"white"}
           tooltip={({ id, value, data }) => (
             <div style={{ background: "white", padding: "5px" }}>
               <strong>{`${data.PR} - `}</strong>
@@ -86,10 +116,11 @@ const PrResponsivenessChart = ({ repo_name }) => {
           barAriaLabel={(e) =>
             `PR ${e.id}: ${e.formattedValue} Follow-On Commits`
           }
+          theme={customTheme}
         />
       ) : (
         <>
-          <p>Loading...</p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>

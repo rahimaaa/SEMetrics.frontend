@@ -4,24 +4,7 @@ import axios from "axios";
 
 const TimeToMergeChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
-  /*
-    For reference - to remove grid and make the lines transparent
 
-          gridXValues={null}
-          gridYValues={null}
-          theme={{
-            grid: {
-              line: {
-                stroke: "transparent", // Remove frame by setting line color to transparent
-                strokeWidth: 0, // Set the line width to 0
-              },
-            },
-          }}
-
-
-colors={{ datum: "color" }} -> to use the color provided in the data
-
-*/
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -38,7 +21,28 @@ colors={{ datum: "color" }} -> to use the color provided in the data
   }, []);
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="rounded-lg"
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
+    >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "15px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Time To Merge
+      </h1>
       {data ? (
         <ResponsiveLine
           data={data}
@@ -104,9 +108,7 @@ colors={{ datum: "color" }} -> to use the color provided in the data
         />
       ) : (
         <>
-          <p>
-            Here we should render a fake chart with a mini loading animation
-          </p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>

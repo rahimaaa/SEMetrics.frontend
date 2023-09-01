@@ -24,11 +24,54 @@ const UnreviewedPullRequestChart = ({ repo_name }) => {
     data.label === "Total Pull Requests" ? "#02DBFE" : "#00B4FF";
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
+    >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "15px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Unreview Pull Request
+      </h1>
+      <div
+        style={{
+          position: "absolute",
+          top: "40px",
+          left: "15px",
+          // color: "white",
+          zIndex: 5,
+          // fontWeight: "bold",
+          // fontSize: "1.3rem",
+        }}
+      >
+        <div className="dot-container">
+          <div className="light-dot"></div>
+          <h1>Total Pull Request</h1>
+        </div>
+        <div>
+          <div className="dot-container">
+            <div className="dark-dot"></div>
+            <h1>Unreview Pull Request</h1>
+          </div>
+        </div>
+      </div>
       {data ? (
         <ResponsivePie
           data={data}
-          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+          margin={{ top: 90, right: 80, bottom: 0, left: 80 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
@@ -93,9 +136,7 @@ const UnreviewedPullRequestChart = ({ repo_name }) => {
         />
       ) : (
         <>
-          <p>
-            Here we should render a fake chart with a mini loading animation
-          </p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>

@@ -34,14 +34,52 @@ const FollowOnCommitChart = ({ repo_name }) => {
     }
   };
 
+  const customTheme = {
+    axis: {
+      ticks: {
+        text: {
+          fill: "white", // Change axis label color to white
+          fontSize: 14,
+        },
+      },
+      legend: {
+        text: {
+          fill: "white", // Change legend text color to white
+          fontSize: 14,
+        },
+      },
+    },
+  };
+
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
+    >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "15px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Follow-On-Commit
+      </h1>
       {data ? (
         <ResponsiveBar
           data={data}
           keys={keys}
           indexBy="PR"
-          margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+          margin={{ top: 0, right: 50, bottom: 20, left: 80 }}
           padding={0.1}
           valueScale={{
             type: "linear",
@@ -55,22 +93,12 @@ const FollowOnCommitChart = ({ repo_name }) => {
           }}
           axisTop={null}
           axisRight={null}
-          axisBottom={{
-            tickValues: [], // Remove tick labels
-            legend: "Pull Request", // Keep the x-axis title
-            legendPosition: "middle",
-            legendOffset: 15,
-          }}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "Follow-On-Commit",
-            legendPosition: "middle",
-            legendOffset: -50,
-          }}
+          axisBottom={null}
+          axisLeft={null}
           labelSkipWidth={12}
           labelSkipHeight={12}
+          gridXValues={null}
+          gridYValues={null}
           labelTextColor={{
             from: "color",
             modifiers: [["darker", 1.6]],
@@ -81,6 +109,7 @@ const FollowOnCommitChart = ({ repo_name }) => {
               Follow-On Commits: {value}
             </div>
           )}
+          theme={customTheme}
           role="application"
           ariaLabel="Nivo bar chart demo"
           barAriaLabel={(e) =>
@@ -89,7 +118,7 @@ const FollowOnCommitChart = ({ repo_name }) => {
         />
       ) : (
         <>
-          <p>Loading...</p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>
