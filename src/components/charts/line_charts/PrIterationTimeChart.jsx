@@ -30,12 +30,56 @@ const PrIterationTimeChart = ({ repo_name }) => {
   return (
     <div
       className="bg-slate-800 rounded-lg"
-      style={{ height: "300px", width: "500px" }}
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
     >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "20px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Pull Request Iteration Time
+      </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "40px",
+          left: "35px",
+          color: "white",
+          zIndex: 5,
+          fontSize: "1rem",
+        }}
+      >
+        {avg}
+      </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "60px",
+          left: "35px",
+          color: "#BDBBBB",
+          zIndex: 5,
+          // fontWeight: "bold",
+          fontSize: "1rem",
+        }}
+      >
+        AVG/Times/Fortnight
+      </h1>
+
       {data ? (
         <ResponsiveLine
           data={data}
-          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          margin={{ top: 60, right: 50, bottom: 60, left: 50 }}
           xScale={{ type: "point" }}
           yScale={{
             type: "linear",
@@ -68,7 +112,7 @@ const PrIterationTimeChart = ({ repo_name }) => {
             axis: {
               ticks: {
                 text: {
-                  fill: "#9c9c9c",
+                  fill: "white",
                 },
               },
               domain: {
@@ -92,14 +136,9 @@ const PrIterationTimeChart = ({ repo_name }) => {
             legendOffset: 36,
             legendPosition: "middle",
           }}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "",
-            legendOffset: -40,
-            legendPosition: "middle",
-          }}
+          axisLeft={null}
+          enableGridX={false}
+          enableGridY={false}
           colors={{ datum: "color" }}
           pointSize={10}
           pointColor={{ theme: "background" }}
@@ -112,9 +151,7 @@ const PrIterationTimeChart = ({ repo_name }) => {
         />
       ) : (
         <>
-          <p>
-            Here we should render a fake chart with a mini loading animation
-          </p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>

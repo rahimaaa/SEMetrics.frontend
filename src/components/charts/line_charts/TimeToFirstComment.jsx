@@ -4,24 +4,8 @@ import axios from "axios";
 
 const TimeToFirstCommentChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
-  /*
-    For reference - to remove grid and make the lines transparent
+  const [avg, setAvg] = useState(undefined);
 
-          gridXValues={null}
-          gridYValues={null}
-          theme={{
-            grid: {
-              line: {
-                stroke: "transparent", // Remove frame by setting line color to transparent
-                strokeWidth: 0, // Set the line width to 0
-              },
-            },
-          }}
-
-
-colors={{ datum: "color" }} -> to use the color provided in the data
-
-*/
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +14,7 @@ colors={{ datum: "color" }} -> to use the color provided in the data
         );
         console.log("Time to First Comment Data: ", response);
         setData(response.data.chartData);
+        setAvg(response.data.averageTime);
       } catch (error) {
         console.log(error);
       }
@@ -38,11 +23,56 @@ colors={{ datum: "color" }} -> to use the color provided in the data
   }, []);
 
   return (
-    <div style={{ height: "300px", width: "500px" }}>
+    <div
+      className="bg-slate-800 rounded-lg"
+      style={{
+        height: "300px",
+        width: "100%",
+        position: "relative",
+        backgroundColor: "#1B2746",
+      }}
+    >
+      <h1
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "15px",
+          color: "white",
+          zIndex: 5,
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+        }}
+      >
+        Time To First Comment
+      </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "40px",
+          left: "35px",
+          color: "white",
+          zIndex: 5,
+          fontSize: "1rem",
+        }}
+      >
+        {avg}
+      </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "60px",
+          left: "35px",
+          color: "#BDBBBB",
+          zIndex: 5,
+          fontSize: "1rem",
+        }}
+      >
+        AVG
+      </h1>
       {data ? (
         <ResponsiveLine
           data={data}
-          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          margin={{ top: 50, right: 20, bottom: 50, left: 50 }}
           xScale={{ type: "point" }}
           yScale={{
             type: "linear",
@@ -71,6 +101,18 @@ colors={{ datum: "color" }} -> to use the color provided in the data
                 strokeWidth: 2, // Adjust the line width as needed
               },
             },
+            axis: {
+              ticks: {
+                text: {
+                  fill: "white",
+                },
+              },
+              //   domain: {
+              //     line: {
+              //       stroke: "#9c9c9c",
+              //     },
+              //   },
+            },
           }}
           yFormat=" >-.2f"
           axisTop={null}
@@ -83,14 +125,7 @@ colors={{ datum: "color" }} -> to use the color provided in the data
             legendOffset: 36,
             legendPosition: "middle",
           }}
-          axisLeft={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: "",
-            legendOffset: -40,
-            legendPosition: "middle",
-          }}
+          axisLeft={null}
           colors={{ datum: "color" }}
           pointSize={10}
           pointColor={{ theme: "background" }}
@@ -104,9 +139,7 @@ colors={{ datum: "color" }} -> to use the color provided in the data
         />
       ) : (
         <>
-          <p>
-            Here we should render a fake chart with a mini loading animation
-          </p>
+          <div className="loading-container"></div>
         </>
       )}
     </div>

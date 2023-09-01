@@ -1,0 +1,89 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-auto-rows: 300px;
+    gap: 15px;
+    padding: 0 20px;
+    margin-top: 15px;
+  }
+  
+  /* Bigger Grid Items */
+  .grid-item-bigger-1 {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2; /* Span 2 columns */
+  }
+  
+  .grid-item-bigger-2 {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2; /* Span 2 columns */
+  }
+  
+  .grid-item-bigger-3 {
+    grid-row: 3 / span 1;
+    grid-column: 2 / span 2; /* Span 2 columns */
+  }
+  
+  /* Smaller Grid Items */
+  .grid-item-smaller-1 {
+    grid-row: 1 / span 1;
+    grid-column: 3 / span 1; /* Span 1 column */
+  }
+  
+  .grid-item-smaller-2 {
+    grid-row: 2 / span 1;
+    grid-column: 3 / span 1; /* Span 1 column */
+  }
+  
+  .grid-item-smaller-3 {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1; /* Span 2 columns */
+  }
+  
+
+  /* Loading Animation for charts*/
+  .loading-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, transparent 25%, rgba(255, 255, 255, 0.5) 50%, transparent 75%);
+    background-size: 200% 100%;
+    animation: loading 3s linear infinite;
+  }
+/*   
+  .loading-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 25%, rgba(255, 255, 255, 0.5) 50%, transparent 75%);
+    background-size: 200% 100%;
+    animation: loading 2s linear infinite;
+  }
+   */
+  @keyframes loading {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .light-dot{
+    height: 20px;
+    width: 25px;
+    border-radius: 15px;
+    background-color: #02DBFE;
+  }
+  .dark-dot{
+    height: 20px;
+    width: 25px;
+    border-radius: 15px;
+    background-color: #00B4FF;
+  }
+
+  .dot-container{
+    display: flex;
+    gap: 10px;
+    color:white;
+    font-weight: bold;
+  }
