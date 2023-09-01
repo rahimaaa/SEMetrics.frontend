@@ -4,6 +4,7 @@ import axios from "axios";
 
 const TimeToMergeChart = ({ repo_name }) => {
   const [data, setData] = useState(undefined);
+  const [avg, setAvg] = useState(Number(0).toFixed(2));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +13,8 @@ const TimeToMergeChart = ({ repo_name }) => {
           `${process.env.REACT_APP_BACKEND_URL}/account/repos/pulls/time-to-merge/${repo_name}`
         );
         console.log("Time to Merge Data: ", response);
-        setData(response.data.chartData);
+        setData(response.data.chartDataFormatted);
+        setAvg(response.data.averageTimeToMerge.toFixed(3));
       } catch (error) {
         console.log(error);
       }
@@ -43,10 +45,35 @@ const TimeToMergeChart = ({ repo_name }) => {
       >
         Time To Merge
       </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "40px",
+          left: "40px",
+          color: "white",
+          zIndex: 5,
+          fontSize: "1rem",
+        }}
+      >
+        {avg}
+      </h1>
+      <h1
+        style={{
+          position: "absolute",
+          top: "60px",
+          left: "40px",
+          color: "#BDBBBB",
+          zIndex: 5,
+          // fontWeight: "bold",
+          fontSize: "1rem",
+        }}
+      >
+        AVG/Times/Fortnight
+      </h1>
       {data ? (
         <ResponsiveLine
           data={data}
-          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          margin={{ top: 50, right: 20, bottom: 50, left: 35 }}
           xScale={{ type: "point" }}
           yScale={{
             type: "linear",
@@ -75,8 +102,20 @@ const TimeToMergeChart = ({ repo_name }) => {
                 strokeWidth: 2, // Adjust the line width as needed
               },
             },
+            axis: {
+              ticks: {
+                text: {
+                  fill: "white",
+                },
+              },
+              domain: {
+                line: {
+                  stroke: "#9c9c9c",
+                },
+              },
+            },
           }}
-          yFormat=" >-.2f"
+          // yFormat=" >-.2f"
           axisTop={null}
           axisRight={null}
           axisBottom={{
