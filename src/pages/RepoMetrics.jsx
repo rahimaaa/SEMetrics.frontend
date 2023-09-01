@@ -12,6 +12,7 @@ import FollowOnCommitChart from "../components/charts/bar_charts/FollowOnCommitC
 import PrResponsivenessChart from "../components/charts/bar_charts/PrRsponsivenessChart";
 import PrIterationTimeChart from "../components/charts/line_charts/PrIterationTimeChart";
 import TimeToMergeChart from "../components/charts/line_charts/TimeToMerge";
+import ChangeFailureRateChart from "../components/charts/pie_charts/ChangeFailureRateChart"
 
 const RepoMetrics = () => {
   const { repoName } = useParams();
@@ -211,6 +212,10 @@ const RepoMetrics = () => {
         <div style={{ margin: "20px" }}>
           <h1>Commit Complexity Chart</h1>
           <CommitComplexityChart repo_name={repoName} />
+        </div>
+        <div style={{ margin: "20px" }}>
+          <h1>Change Failure Rate Chart</h1>
+          <ChangeFailureRateChart repo_name={repoName} />
         </div>
 
 
